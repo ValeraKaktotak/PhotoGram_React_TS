@@ -8,27 +8,33 @@ import MyPhotos from '@/pages/myphotos'
 import Post from '@/pages/post'
 import Profile from '@/pages/profile'
 import SignUp from '@/pages/signup'
+import ProtectedRoutes from './components/ProtectedRoutes'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />,
-    errorElement: <Error />
-  },
-  {
-    path: '/post',
-    element: <Post />,
-    errorElement: <Error />
-  },
-  {
-    path: '/profile',
-    element: <Profile />,
-    errorElement: <Error />
-  },
-  {
-    path: '/myphotos',
-    element: <MyPhotos />,
-    errorElement: <Error />
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+        errorElement: <Error />
+      },
+      {
+        path: '/post',
+        element: <Post />,
+        errorElement: <Error />
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+        errorElement: <Error />
+      },
+      {
+        path: '/myphotos',
+        element: <MyPhotos />,
+        errorElement: <Error />
+      }
+    ]
   },
   {
     path: '/login',
