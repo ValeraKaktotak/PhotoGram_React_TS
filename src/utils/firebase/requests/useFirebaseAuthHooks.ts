@@ -1,6 +1,7 @@
 import { auth } from '@/utils/firebase'
 import {
   createUserWithEmailAndPassword,
+  GithubAuthProvider,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -24,5 +25,9 @@ export const useFirebaseAuthHooks = {
   googleSignIn: (): Promise<UserCredential> => {
     const googleAuthProvider = new GoogleAuthProvider()
     return signInWithPopup(auth, googleAuthProvider)
+  },
+  githubSignIn: (): Promise<UserCredential> => {
+    const githubAuthProvider = new GithubAuthProvider()
+    return signInWithPopup(auth, githubAuthProvider)
   }
 }
