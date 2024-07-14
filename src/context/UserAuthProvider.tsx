@@ -1,4 +1,4 @@
-import { onAuthStateChanged, User } from 'firebase/auth'
+import { onAuthStateChanged, type User } from 'firebase/auth'
 import { FC, useEffect, useState } from 'react'
 
 //Utils
@@ -20,14 +20,12 @@ export const UserAuthProvider: FC<IUserAuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user)
-      }
-
-      return () => {
-        unsubscribe()
-      }
+      setUser(user)
     })
+
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
   const value: IValue = { user }

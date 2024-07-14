@@ -4,6 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 //Utils
 import { useFirebaseAuthHooks } from '@/utils/firebase/requests/useFirebaseAuthHooks'
 
+//Assets
+import image1 from '@/assets/images/image1.jpg'
+import image2 from '@/assets/images/image2.jpg'
+import image3 from '@/assets/images/image3.jpg'
+import image4 from '@/assets/images/image4.jpg'
+
 //Components
 import { Button } from '@/components/ui/button'
 import {
@@ -62,11 +68,36 @@ const SignUp: FC = () => {
     <div className='h-screen w-full bg-slate-800'>
       <div className='container mx-auto flex h-full p-6'>
         <div className='flex w-full items-center justify-center'>
+          <div className='hidden w-2/3 p-6 lg:block'>
+            <div className='grid grid-cols-2 gap-2'>
+              <img
+                className='aspect-auto h-auto w-2/3 place-self-end rounded-3xl'
+                src={image2}
+                alt='smileman'
+              />
+              <img
+                className='aspect-auto h-auto w-2/4 rounded-3xl'
+                src={image1}
+                alt='jumpman'
+              />
+              <img
+                className='aspect-auto h-auto w-2/4 place-self-end rounded-3xl'
+                src={image4}
+                alt='musicgirl'
+              />
+              <img
+                className='aspect-auto h-auto w-2/3 rounded-3xl'
+                src={image3}
+                alt='laughkid'
+              />
+            </div>
+          </div>
+
           <div className='max-w-sm rounded-xl border bg-card text-card-foreground shadow-sm'>
             <Card>
               <form onSubmit={handleSubmit}>
                 <CardHeader className='space-y-1'>
-                  <CardTitle className='text-2xl'>Create an account</CardTitle>
+                  <CardTitle className='text-2xl'>SignUp an account</CardTitle>
                   <CardDescription>
                     Enter your email below to create your account
                   </CardDescription>
@@ -134,7 +165,7 @@ const SignUp: FC = () => {
                 </CardContent>
                 <CardFooter className='flex flex-col'>
                   <Button className='w-full' type='submit'>
-                    Create account
+                    Sign Up
                   </Button>
                   <p className='mt-3 text-center text-sm'>
                     Already have an account ? <Link to='/login'>Login</Link>
