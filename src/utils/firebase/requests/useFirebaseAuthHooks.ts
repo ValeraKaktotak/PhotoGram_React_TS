@@ -4,23 +4,24 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signOut
+  signOut,
+  UserCredential
 } from 'firebase/auth'
 
 export const useFirebaseAuthHooks = {
-  logIn: (email: string, password: string) => {
+  logIn: (email: string, password: string): Promise<UserCredential> => {
     return signInWithEmailAndPassword(auth, email, password)
   },
 
-  logOut: () => {
-    signOut(auth)
+  logOut: (): Promise<void> => {
+    return signOut(auth)
   },
 
-  signUp: (email: string, password: string) => {
+  signUp: (email: string, password: string): Promise<UserCredential> => {
     return createUserWithEmailAndPassword(auth, email, password)
   },
 
-  googleSignIn: () => {
+  googleSignIn: (): Promise<UserCredential> => {
     const googleAuthProvider = new GoogleAuthProvider()
     return signInWithPopup(auth, googleAuthProvider)
   }
