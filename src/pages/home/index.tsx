@@ -1,8 +1,13 @@
 import type { FC } from 'react'
 
-interface IHome {}
+//Components
+import Layout from '@/components/layout'
 
-const Home: FC<IHome> = ({}) => {
-  return <div>Home</div>
+const Home: FC = () => {
+  return (
+    <Layout>
+      <div>Home</div>
+    </Layout>
+  )
 }
 export default Home
