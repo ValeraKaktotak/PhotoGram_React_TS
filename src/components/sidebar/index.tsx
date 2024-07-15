@@ -26,13 +26,13 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
           key={i}
           className={cn(
             buttonVariants({ variant: 'link' }),
-            'hover: flex justify-start rounded-none text-white transition hover:no-underline',
+            'hover: flex justify-start rounded-none p-0 text-white transition hover:no-underline',
             pathname === item.link
               ? 'bg-white text-gray-800'
               : 'hover:bg-slate-900 hover:text-secondary'
           )}
         >
-          <Link to={item.link} className='flex flex-1'>
+          <Link to={item.link} className='flex h-full flex-1 p-2'>
             <span>{item.icon({ className: 'w-5 h-5 mr-2' })}</span>
             <span>{item.name}</span>
           </Link>
@@ -42,7 +42,7 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
       <div
         className={cn(
           buttonVariants({ variant: 'link' }),
-          'hover: flex justify-start rounded-none text-white transition hover:no-underline',
+          'hover: flex justify-start rounded-none p-0 text-white transition hover:no-underline',
           pathname === '/login'
             ? 'bg-white text-gray-800'
             : 'hover:bg-slate-900 hover:text-secondary'
@@ -50,7 +50,7 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
       >
         <Link
           to='/login'
-          className='flex flex-1'
+          className='flex h-full flex-1 p-2'
           onClick={firebaseAuthRequests.logOut}
         >
           <span>

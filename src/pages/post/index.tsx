@@ -1,8 +1,15 @@
 import type { FC } from 'react'
 
+//Components
+import Layout from '@/components/layout'
+
 interface IPost {}
 
 const Post: FC<IPost> = ({}) => {
-  return <div>Post</div>
+  return (
+    <Layout>
+      <div>MyPhotos</div>
+    </Layout>
+  )
 }
 export default Post
