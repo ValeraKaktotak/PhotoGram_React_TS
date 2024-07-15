@@ -2,7 +2,7 @@ import { useState, type FC } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 //Utils
-import { useFirebaseAuthHooks } from '@/utils/firebase/requests/useFirebaseAuthHooks'
+import { firebaseAuthRequests } from '@/utils/firebase/requests/firebaseAuthRequests'
 
 //Assets
 import image1 from '@/assets/images/image1.jpg'
@@ -38,7 +38,7 @@ const SignUp: FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      useFirebaseAuthHooks.signUp(userInfo.email, userInfo.password)
+      firebaseAuthRequests.signUp(userInfo.email, userInfo.password)
       navigate('/')
     } catch (error) {
       console.log(error)
@@ -47,7 +47,7 @@ const SignUp: FC = () => {
   const handleGoogleSignIn = async (e: React.SyntheticEvent<HTMLElement>) => {
     e.preventDefault()
     try {
-      await useFirebaseAuthHooks.googleSignIn()
+      await firebaseAuthRequests.googleSignIn()
       navigate('/')
     } catch (error) {
       console.log(error)
@@ -57,7 +57,7 @@ const SignUp: FC = () => {
   const handleGithubSignIn = async (e: React.SyntheticEvent<HTMLElement>) => {
     e.preventDefault()
     try {
-      await useFirebaseAuthHooks.githubSignIn()
+      await firebaseAuthRequests.githubSignIn()
       navigate('/')
     } catch (error) {
       console.log(error)
