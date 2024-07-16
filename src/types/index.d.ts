@@ -1,3 +1,9 @@
+import { OutputFileEntry } from '@uploadcare/blocks'
+
+interface FileEntry {
+  files: OutputFileEntry[]
+}
+
 interface UserSignIn {
   email: string
   password: string

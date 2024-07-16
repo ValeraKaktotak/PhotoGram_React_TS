@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 
 //Components
+import FileUploader from '@/components/fileUploder'
 import Layout from '@/components/layout'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -30,6 +31,8 @@ const Post: FC = () => {
                   <Label className='mb-4' htmlFor='photo'>
                     Photos
                   </Label>
+
+                  <FileUploader />
                 </div>
                 <Button className='mt-8 w-32' type='submit'>
                   Post
