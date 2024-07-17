@@ -6,6 +6,9 @@ import { userAuthContext } from '@/context/UserAuthContext'
 //Types
 import type { PhotoMeta, Post } from '@/types'
 
+//Services
+import { createPost } from '@/repository/post.service'
+
 //Components
 import FileUploader from '@/components/fileUploder'
 import Layout from '@/components/layout'
@@ -13,8 +16,10 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { OutputFileEntry } from '@uploadcare/react-uploader'
+import { useNavigate } from 'react-router-dom'
 
 const Post: FC = () => {
+  const navigate = useNavigate()
   const { user } = useContext(userAuthContext)
   const [fileEntry, setFileEntry] = useState<OutputFileEntry[] | []>([])
 
@@ -27,7 +32,7 @@ const Post: FC = () => {
     date: new Date()
   })
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('Uploaded File Entry : ', fileEntry)
     console.log('The create post is : ', post)
@@ -43,6 +48,10 @@ const Post: FC = () => {
         photos: photoMeta
       }
       console.log('The final posy is  : ', newPost)
+      await createPost(newPost)
+      navigate('/')
+    } else {
+      navigate('/login')
     }
   }
 
