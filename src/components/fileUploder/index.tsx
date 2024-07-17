@@ -53,6 +53,7 @@ const FileUploader: FC<IFileUploader> = ({ files, onChange }) => {
         onModalClose={handleModalCloseEvent}
         onChange={handleChangeEvent}
         pubkey={import.meta.env.VITE_UPLOADECAREKEY}
+        className='uploader'
       />
 
       <div className='mt-8 grid grid-cols-2 gap-4'>
@@ -60,7 +61,7 @@ const FileUploader: FC<IFileUploader> = ({ files, onChange }) => {
           <div key={file.uuid} className='relative'>
             <img
               key={file.uuid}
-              src={`${file.cdnUrl}-/format/auto/-/quality/smart/-/stretch/fill/`}
+              src={`${file.cdnUrl}-/format/webp/-/quality/smart/-/stretch/fill/`}
             />
 
             <div className='absolute -right-2 -top-2 flex h-7 w-7 cursor-pointer justify-center rounded-full border-2 border-slate-800 bg-white'>

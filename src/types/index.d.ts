@@ -29,6 +29,6 @@ interface Post {
 }
 
 interface PhotoMeta {
-  cdnUrl: string
-  uuid: string
+  cdnUrl: string | null
+  uuid: string | null
 }

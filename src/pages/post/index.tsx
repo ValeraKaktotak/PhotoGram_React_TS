@@ -4,7 +4,7 @@ import { useContext, useState, type FC } from 'react'
 import { userAuthContext } from '@/context/UserAuthContext'
 
 //Types
-import { type Post } from '@/types'
+import type { PhotoMeta, Post } from '@/types'
 
 //Components
 import FileUploader from '@/components/fileUploder'
@@ -31,6 +31,19 @@ const Post: FC = () => {
     e.preventDefault()
     console.log('Uploaded File Entry : ', fileEntry)
     console.log('The create post is : ', post)
+
+    const photoMeta: PhotoMeta[] = fileEntry.map((file: OutputFileEntry) => {
+      return { cdnUrl: file.cdnUrl, uuid: file.uuid }
+    })
+
+    if (user != null) {
+      const newPost: Post = {
+        ...post,
+        userId: user?.uid || null,
+        photos: photoMeta
+      }
+      console.log('The final posy is  : ', newPost)
+    }
   }
 
   return (
