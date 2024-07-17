@@ -83,3 +83,14 @@ body {
   padding: 0;
   overflow-x: hidden;
 }
+
+/*Uploadcare FileUploaderRegular -> button*/
+.uploader button {
+  padding: 10px;
+  color: black;
+  transition: all ease-in-out 200ms;
+  background-color: gray;
+  &:hover {
+    color: white;
+  }
+}
