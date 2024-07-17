@@ -2,13 +2,16 @@ import { useState, type FC } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 //Utils
-import { firebaseAuthRequests } from '@/utils/firebase/requests/firebaseAuthRequests'
+import { firebaseAuthRequests } from '@/repository/signIn.service'
 
 //Assets
 import image1 from '@/assets/images/image1.jpg'
 import image2 from '@/assets/images/image2.jpg'
 import image3 from '@/assets/images/image3.jpg'
 import image4 from '@/assets/images/image4.jpg'
+
+//Types
+import { UserSignIn } from '@/types'
 
 //Components
 import { Button } from '@/components/ui/button'

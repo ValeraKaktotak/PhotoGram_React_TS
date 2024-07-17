@@ -4,10 +4,13 @@ import { Link, useLocation } from 'react-router-dom'
 
 //Utils
 import { cn } from '@/lib/utils'
-import { firebaseAuthRequests } from '@/utils/firebase/requests/firebaseAuthRequests'
+import { firebaseAuthRequests } from '@/repository/signIn.service'
 
 //Components
 import { buttonVariants } from '../ui/button'
+
+//Types
+import { NavItem } from '@/types'
 
 interface ISidebar {
   items: NavItem[]
