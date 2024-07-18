@@ -34,8 +34,6 @@ const Post: FC = () => {
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('Uploaded File Entry : ', fileEntry)
-    console.log('The create post is : ', post)
 
     const photoMeta: PhotoMeta[] = fileEntry.map((file: OutputFileEntry) => {
       return { cdnUrl: file.cdnUrl, uuid: file.uuid }
@@ -47,7 +45,6 @@ const Post: FC = () => {
         userId: user?.uid || null,
         photos: photoMeta
       }
-      console.log('The final posy is  : ', newPost)
       await createPost(newPost)
       navigate('/')
     } else {
