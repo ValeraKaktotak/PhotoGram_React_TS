@@ -1,12 +1,43 @@
 import { Search } from 'lucide-react'
-import type { FC } from 'react'
+import { useContext, useEffect, useState, type FC } from 'react'
+
+//Type
+import { DocumentResponse } from '@/types'
+
+//Context
+import { userAuthContext } from '@/context/UserAuthContext'
+
+//Services
+import { getPosts } from '@/repository/post.service'
 
 //Components
 import Layout from '@/components/layout'
+import Postcard from '@/components/postCard'
 import Stories from '@/components/stories'
 import { Input } from '@/components/ui/input'
 
 const Home: FC = () => {
+  const { user } = useContext(userAuthContext)
+  const [data, setData] = useState<DocumentResponse[]>([])
+
+  const getAllPost = async () => {
+    const res = await getPosts()
+    console.log(res)
+    if (res) setData(res)
+  }
+
+  useEffect(() => {
+    if (user != null) {
+      getAllPost()
+    }
+  }, [])
+
+  const renderPosts = () => {
+    return data.map((item) => {
+      return <Postcard data={item} key={item.id} />
+    })
+  }
+
   return (
     <Layout>
       <div className='flex flex-col'>
@@ -31,7 +62,7 @@ const Home: FC = () => {
           <h2 className='mb-5'>Feed</h2>
           <div className='flex w-full justify-center'>
             <div className='flex max-w-sm flex-col overflow-hidden rounded-sm'>
-              {/* {data ? renderPosts() : <div>...Loading</div>} */}
+              {data ? renderPosts() : <div>...Loading</div>}
             </div>
           </div>
         </div>
