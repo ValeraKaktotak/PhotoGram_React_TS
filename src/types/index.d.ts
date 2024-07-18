@@ -32,3 +32,13 @@ interface PhotoMeta {
   cdnUrl: string | null
   uuid: string | null
 }
+
+interface DocumentResponse {
+  id: string
+  caption: string
+  photos: PhotoMeta[]
+  likes: number
+  userLikes: []
+  userId: string | null
+  date: Date
+}
