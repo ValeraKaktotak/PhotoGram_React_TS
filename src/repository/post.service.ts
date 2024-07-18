@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore'
 
 //Types
-import { Post } from '@/types'
+import { DocumentResponse, Post } from '@/types'
 
 //Utils
 import { db } from '@/utils/firebase'
@@ -27,9 +27,31 @@ export const getPosts = () => {
   return getDocs(q)
 }
 
-export const getPostByUserId = (id: string) => {
+export const getPostByUserId = async (id: string) => {
   const q = query(collection(db, COLLECTION_NAME), where('userId', '==', id))
-  return getDocs(q)
+  try {
+    const querySnapshot = await getDocs(q)
+
+    const tempArr: DocumentResponse[] = []
+    if (querySnapshot.size > 0) {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data() as Post
+        const responseObj: DocumentResponse = {
+          id: doc.id,
+          ...data
+        }
+
+        tempArr.push(responseObj)
+      })
+      return tempArr
+    } else {
+      console.log('No such document')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
+  // return getDocs(q)
 }
 
 export const getPost = (id: string) => {
