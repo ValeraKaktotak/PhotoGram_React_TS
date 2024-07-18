@@ -22,7 +22,6 @@ const Home: FC = () => {
 
   const getAllPost = async () => {
     const res = await getPosts()
-    console.log(res)
     if (res) setData(res)
   }
 
