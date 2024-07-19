@@ -23,7 +23,7 @@ interface Post {
   caption: string
   photos: PhotoMeta[]
   likes: number
-  userLikes: []
+  userLikes: string[]
   userId: string | null
   date: Date
 }
@@ -38,7 +38,12 @@ interface DocumentResponse {
   caption: string
   photos: PhotoMeta[]
   likes: number
-  userLikes: []
+  userLikes: string[]
   userId: string | null
   date: Date
+}
+
+interface LikesInfo {
+  likes: number
+  isLike: boolean
 }

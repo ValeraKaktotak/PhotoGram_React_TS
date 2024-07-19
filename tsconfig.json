@@ -22,6 +22,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+
+    /*UploadCare*/
     "types": ["@uploadcare/blocks/types/jsx"],
 
     "baseUrl": ".",

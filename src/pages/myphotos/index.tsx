@@ -8,7 +8,7 @@ import { userAuthContext } from '@/context/UserAuthContext'
 import { getPostByUserId } from '@/repository/post.service'
 
 //Types
-import type { DocumentResponse, Post } from '@/types'
+import type { DocumentResponse } from '@/types'
 
 //Components
 import Layout from '@/components/layout'
@@ -16,35 +16,15 @@ import Layout from '@/components/layout'
 const MyPhotos: FC = () => {
   const { user } = useContext(userAuthContext)
   const [userData, setUserData] = useState<DocumentResponse[]>([])
-  console.log(userData)
 
-  const getAllPost = async (id: string) => {
-    try {
-      const querySnapshot = await getPostByUserId(id)
-
-      const tempArr: DocumentResponse[] = []
-      if (querySnapshot.size > 0) {
-        querySnapshot.forEach((doc) => {
-          const data = doc.data() as Post
-          const responseObj: DocumentResponse = {
-            id: doc.id,
-            ...data
-          }
-
-          tempArr.push(responseObj)
-        })
-        setUserData(tempArr)
-      } else {
-        console.log('No such document')
-      }
-    } catch (error) {
-      console.log(error)
-    }
+  const fetchData = async (id: string) => {
+    const res = await getPostByUserId(id)
+    if (res) setUserData(res)
   }
 
   useEffect(() => {
     if (user != null) {
-      getAllPost(user.uid)
+      fetchData(user.uid)
     }
   }, [])
 
