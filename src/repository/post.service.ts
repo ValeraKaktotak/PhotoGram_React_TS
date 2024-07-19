@@ -7,6 +7,7 @@ import {
   getDocs,
   orderBy,
   query,
+  updateDoc,
   where
 } from 'firebase/firestore'
 
@@ -79,4 +80,16 @@ export const getPost = (id: string) => {
 
 export const deletePost = (id: string) => {
   return deleteDoc(doc(db, COLLECTION_NAME, id))
+}
+
+export const updateLikesOnPost = (
+  id: string,
+  userLikes: string[],
+  likes: number
+) => {
+  const docRef = doc(db, COLLECTION_NAME, id)
+  return updateDoc(docRef, {
+    likes: likes,
+    userLikes: userLikes
+  })
 }
