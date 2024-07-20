@@ -11,6 +11,7 @@ import MyPhotos from '@/pages/myphotos'
 import NotFound from '@/pages/notfound'
 import Post from '@/pages/post'
 import Profile from '@/pages/profile'
+import EditProfile from '@/pages/profile/EditProfile'
 import SignUp from '@/pages/signup'
 
 export const router = createBrowserRouter([
@@ -35,6 +36,11 @@ export const router = createBrowserRouter([
       {
         path: '/myphotos',
         element: <MyPhotos />,
+        errorElement: <Error />
+      },
+      {
+        path: '/edit-profile',
+        element: <EditProfile />,
         errorElement: <Error />
       }
     ]
