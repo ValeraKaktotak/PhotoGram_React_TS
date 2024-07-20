@@ -47,3 +47,24 @@ interface LikesInfo {
   likes: number
   isLike: boolean
 }
+
+interface ProfileInfo {
+  user?: User
+  displayName?: string
+  photoURL?: string
+}
+
+interface UserProfile {
+  userId?: string
+  displayName?: string
+  photoURL?: string
+  userBio?: string
+}
+
+interface UserProfileResponse {
+  id?: string
+  userId?: string
+  displayName?: string
+  photoURL?: string
+  userBio?: string
+}
