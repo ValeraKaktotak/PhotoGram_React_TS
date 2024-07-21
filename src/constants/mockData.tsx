@@ -8,6 +8,9 @@ import {
   SquarePlus
 } from 'lucide-react'
 
+//Types
+import { NavItem } from '@/types'
+
 export const navItems: NavItem[] = [
   {
     name: 'Home',
