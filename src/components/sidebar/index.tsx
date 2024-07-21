@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom'
 
 //Utils
 import { cn } from '@/lib/utils'
+
+//Service
 import { firebaseAuthRequests } from '@/repository/signIn.service'
 
 //Components
@@ -20,9 +22,11 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
   const { pathname } = useLocation()
 
   return (
-    <nav className='relative flex h-screen w-full max-w-sm flex-col'>
+    <nav className='relative flex h-screen w-full max-w-10 flex-col overflow-hidden sm:max-w-sm'>
       <div className='m-5 flex justify-center'>
-        <div className='text-lg text-white'>PhotoGram</div>
+        <div className='hidden text-lg text-white sm:inline-flex'>
+          PhotoGram
+        </div>
       </div>
       {items.map((item, i) => (
         <div
@@ -37,7 +41,7 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
         >
           <Link to={item.link} className='flex h-full flex-1 p-2'>
             <span>{item.icon({ className: 'w-5 h-5 mr-2' })}</span>
-            <span>{item.name}</span>
+            <span className='hidden sm:inline-flex'>{item.name}</span>
           </Link>
         </div>
       ))}
@@ -59,7 +63,7 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
           <span>
             <LogIn className='mr-2 h-5 w-5' />
           </span>
-          <span>Logout</span>
+          <span className='hidden sm:inline-flex'>Logout</span>
         </Link>
       </div>
     </nav>
