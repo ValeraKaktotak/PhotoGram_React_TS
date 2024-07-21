@@ -34,13 +34,13 @@ export const router = createBrowserRouter([
         errorElement: <Error />
       },
       {
-        path: '/myphotos',
-        element: <MyPhotos />,
+        path: '/edit-profile',
+        element: <EditProfile />,
         errorElement: <Error />
       },
       {
-        path: '/edit-profile',
-        element: <EditProfile />,
+        path: '/myphotos',
+        element: <MyPhotos />,
         errorElement: <Error />
       }
     ]

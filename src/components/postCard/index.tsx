@@ -68,7 +68,7 @@ const Postcard: FC<IPostcard> = ({ data }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className='p-0'>
-        <img src={data.photos ? data.photos[0].cdnUrl ?? '' : ''} />
+        <img src={data.photos ? data.photos[0]?.cdnUrl ?? '' : ''} />
       </CardContent>
       <CardFooter className='flex flex-col p-3'>
         <div className='mb-3 flex w-full justify-between'>

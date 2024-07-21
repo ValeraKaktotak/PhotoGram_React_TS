@@ -1,7 +1,7 @@
 import '@uploadcare/react-uploader/core.css'
 import { useCallback, useRef, useState, type FC } from 'react'
 
-import { OutputFileEntry } from '@uploadcare/blocks'
+import type { OutputFileEntry } from '@uploadcare/blocks'
 import { FileUploaderRegular } from '@uploadcare/react-uploader'
 
 interface IFileUploader {
@@ -47,6 +47,7 @@ const FileUploader: FC<IFileUploader> = ({ files, onChange }) => {
       <FileUploaderRegular
         imgOnly
         multiple
+        sourceList='local, url, camera, dropbox, gdrive'
         removeCopyright
         confirmUpload={false}
         apiRef={ctxProviderRef}

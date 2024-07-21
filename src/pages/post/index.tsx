@@ -1,10 +1,12 @@
 import { useContext, useState, type FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 //Context
 import { userAuthContext } from '@/context/UserAuthContext'
 
 //Types
 import type { PhotoMeta, Post } from '@/types'
+import type { OutputFileEntry } from '@uploadcare/react-uploader'
 
 //Services
 import { createPost } from '@/repository/post.service'
@@ -15,8 +17,6 @@ import Layout from '@/components/layout'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { OutputFileEntry } from '@uploadcare/react-uploader'
-import { useNavigate } from 'react-router-dom'
 
 const Post: FC = () => {
   const navigate = useNavigate()
@@ -32,7 +32,11 @@ const Post: FC = () => {
     date: new Date()
   })
 
-  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setPost({ ...post, caption: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const photoMeta: PhotoMeta[] = fileEntry.map((file: OutputFileEntry) => {
@@ -46,6 +50,8 @@ const Post: FC = () => {
         photos: photoMeta
       }
       await createPost(newPost)
+      console.log(newPost)
+
       navigate('/')
     } else {
       navigate('/login')
@@ -61,6 +67,11 @@ const Post: FC = () => {
           </h3>
 
           <div className='p-8'>
+            <div className='flex flex-col'>
+              <div className='mb-4'>Photos</div>
+              <FileUploader files={fileEntry} onChange={setFileEntry} />
+            </div>
+
             <form onSubmit={handleSubmit}>
               <div className='flex flex-col'>
                 <Label className='mb-4' htmlFor='caption'>
@@ -71,18 +82,9 @@ const Post: FC = () => {
                   id='caption'
                   placeholder='What&#39;s in your photo'
                   value={post.caption}
-                  onChange={(e) =>
-                    setPost({ ...post, caption: e.target.value })
-                  }
+                  onChange={handleChange}
                 />
-                <div className='flex flex-col'>
-                  <Label className='mb-4' htmlFor='photo'>
-                    Photos
-                  </Label>
-
-                  <FileUploader files={fileEntry} onChange={setFileEntry} />
-                </div>
-                <Button className='mt-8 w-32' type='submit'>
+                <Button className='w-32' type='submit'>
                   Post
                 </Button>
               </div>
