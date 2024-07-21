@@ -69,7 +69,11 @@ const Post: FC = () => {
           <div className='p-8'>
             <div className='flex flex-col'>
               <div className='mb-4'>Photos</div>
-              <FileUploader files={fileEntry} onChange={setFileEntry} />
+              <FileUploader
+                files={fileEntry}
+                onChange={setFileEntry}
+                preview={true}
+              />
             </div>
 
             <form onSubmit={handleSubmit}>

@@ -71,7 +71,11 @@ const EditProfile: FC = () => {
                   />
                 )}
               </div>
-              <FileUploader files={fileEntry} onChange={setFileEntry} />
+              <FileUploader
+                files={fileEntry}
+                onChange={setFileEntry}
+                preview={false}
+              />
             </div>
             <form onSubmit={updateProfile}>
               <div className='flex flex-col'>
