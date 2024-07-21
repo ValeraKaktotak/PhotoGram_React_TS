@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { userAuthContext } from '@/context/UserAuthContext'
 
 //Services
+import { updateUserInfoOnPosts } from '@/repository/post.service'
 import { firebaseAuthRequests } from '@/repository/signIn.service'
 import {
   createUserProfile,
@@ -69,6 +70,7 @@ const EditProfile: FC = () => {
     }
 
     firebaseAuthRequests.updateProfileInfo(profileInfo)
+    updateUserInfoOnPosts(profileInfo)
   }
 
   useEffect(() => {

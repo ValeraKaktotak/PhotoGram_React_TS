@@ -54,7 +54,6 @@ const Post: FC = () => {
         photos: photoMeta
       }
       await createPost(newPost)
-      console.log(newPost)
 
       navigate('/')
     } else {

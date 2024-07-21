@@ -9,8 +9,6 @@ interface IRenderPosts {
 }
 
 export const RenderPosts: FC<IRenderPosts> = ({ data }) => {
-  console.log(data)
-
   return data.map((item, index) => {
     return (
       <div key={index} className='relative'>
