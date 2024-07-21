@@ -24,6 +24,13 @@ export const createUserProfile = (user: UserProfile) => {
   }
 }
 
+export const updateUserProfile = async (id: string, user: UserProfile) => {
+  const docRef = doc(db, COLLECTION_NAME, id)
+  return updateDoc(docRef, {
+    ...user
+  })
+}
+
 export const getUserProfile = async (userId: string) => {
   try {
     const q = query(
@@ -48,11 +55,4 @@ export const getUserProfile = async (userId: string) => {
   } catch (error) {
     console.log(error)
   }
-}
-
-export const updateUserProfile = async (id: string, user: UserProfile) => {
-  const docRef = doc(db, COLLECTION_NAME, id)
-  return updateDoc(docRef, {
-    ...user
-  })
 }

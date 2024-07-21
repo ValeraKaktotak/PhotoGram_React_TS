@@ -1,4 +1,3 @@
-import { auth } from '@/utils/firebase'
 import {
   createUserWithEmailAndPassword,
   GithubAuthProvider,
@@ -6,8 +5,15 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
   UserCredential
 } from 'firebase/auth'
+
+//Utils
+import { auth } from '@/utils/firebase'
+
+//Types
+import { ProfileInfo } from '@/types'
 
 export const firebaseAuthRequests = {
   logIn: (email: string, password: string): Promise<UserCredential> => {
@@ -29,5 +35,12 @@ export const firebaseAuthRequests = {
   githubSignIn: (): Promise<UserCredential> => {
     const githubAuthProvider = new GithubAuthProvider()
     return signInWithPopup(auth, githubAuthProvider)
+  },
+
+  updateProfileInfo: (profileInfo: ProfileInfo): Promise<void> => {
+    return updateProfile(profileInfo.user!, {
+      displayName: profileInfo.displayName,
+      photoURL: profileInfo.photoURL
+    })
   }
 }

@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom'
 import { userAuthContext } from '@/context/UserAuthContext'
 
 //Types
-import { DocumentResponse, UserProfileResponse } from '@/types'
+import type { DocumentResponse, UserProfileResponse } from '@/types'
 
 //Assets
 import avatar from '@/assets/images/avatar.png'
 
 //Services
 import { getPostByUserId } from '@/repository/post.service'
+import { getUserProfile } from '@/repository/userProfile.service'
 
 //Components
 import Layout from '@/components/layout'
@@ -42,9 +43,17 @@ const Profile: FC = () => {
     if (res) setUserData(res)
   }
 
+  const getUserProfileInfo = async (userId: string) => {
+    const data: UserProfileResponse = (await getUserProfile(userId)) || {}
+    if (data.displayName) {
+      setUserInfo(data)
+    }
+  }
+
   useEffect(() => {
     if (user != null) {
       fetchData(user.uid)
+      getUserProfileInfo(user.uid)
     }
   }, [])
 

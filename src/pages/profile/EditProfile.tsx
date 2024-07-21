@@ -1,8 +1,14 @@
-import { useContext, useState, type FC } from 'react'
+import { useContext, useEffect, useState, type FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 //Context
 import { userAuthContext } from '@/context/UserAuthContext'
+
+//Services
+import {
+  createUserProfile,
+  updateUserProfile
+} from '@/repository/userProfile.service'
 
 //Assets
 import avatar from '@/assets/images/avatar.png'
@@ -41,9 +47,29 @@ const EditProfile: FC = () => {
     setData({ ...data, userBio: e.target.value })
   }
 
-  const updateProfile = (e: React.FormEvent<HTMLFormElement>) => {
+  const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    try {
+      if (id) {
+        await updateUserProfile(id, data)
+      } else {
+        await createUserProfile(data)
+      }
+      navigate('/profile')
+    } catch (err) {
+      console.log(err)
+    }
   }
+
+  useEffect(() => {
+    if (fileEntry.length > 0) {
+      setData({
+        ...data,
+        photoURL: fileEntry[fileEntry.length - 1].cdnUrl || ''
+      })
+    }
+  }, [fileEntry])
 
   return (
     <Layout>
@@ -54,12 +80,12 @@ const EditProfile: FC = () => {
           </h3>
 
           <div className='p-8'>
-            <div className='flex flex-col'>
+            <div className='mb-4 flex flex-col border-b pb-4'>
               <div className='mb-4'>Profile Picture</div>
               <div className='mb-4'>
                 {fileEntry.length > 0 ? (
                   <img
-                    src={fileEntry[0].cdnUrl!}
+                    src={fileEntry[fileEntry.length - 1].cdnUrl!}
                     alt='avatar'
                     className='h-28 w-28 rounded-full border-2 border-slate-800 object-cover'
                   />

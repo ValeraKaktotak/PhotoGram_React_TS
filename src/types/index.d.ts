@@ -1,4 +1,5 @@
 import { OutputFileEntry } from '@uploadcare/blocks'
+import { User } from 'firebase/auth'
 
 interface UserSignIn {
   email: string
