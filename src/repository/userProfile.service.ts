@@ -56,3 +56,25 @@ export const getUserProfile = async (userId: string) => {
     console.log(error)
   }
 }
+
+export const getAllUsers = async (userId: string) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, COLLECTION_NAME))
+    const tempArr: UserProfileResponse[] = []
+    if (querySnapshot.size > 0) {
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data() as UserProfile
+        const responeObj: UserProfileResponse = {
+          id: doc.id,
+          ...userData
+        }
+        tempArr.push(responeObj)
+      })
+      return tempArr.filter((item) => item.userId != userId)
+    } else {
+      console.log('No such documents')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
