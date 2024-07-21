@@ -20,7 +20,6 @@ const UserList: FC = () => {
 
   const getSuggestedUsers = async (userId: string) => {
     const response = (await getAllUsers(userId)) || []
-    console.log('The response is  : ', response)
     setSuggestedUser(response)
   }
 
