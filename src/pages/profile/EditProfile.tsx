@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { userAuthContext } from '@/context/UserAuthContext'
 
 //Services
+import { firebaseAuthRequests } from '@/repository/signIn.service'
 import {
   createUserProfile,
   updateUserProfile
@@ -14,7 +15,7 @@ import {
 import avatar from '@/assets/images/avatar.png'
 
 //Types
-import type { UserProfile } from '@/types'
+import type { ProfileInfo, UserProfile } from '@/types'
 import type { OutputFileEntry } from '@uploadcare/react-uploader'
 
 //Components
@@ -60,6 +61,14 @@ const EditProfile: FC = () => {
     } catch (err) {
       console.log(err)
     }
+
+    const profileInfo: ProfileInfo = {
+      user: user!,
+      displayName: data.displayName,
+      photoURL: data.photoURL
+    }
+
+    firebaseAuthRequests.updateProfileInfo(profileInfo)
   }
 
   useEffect(() => {
