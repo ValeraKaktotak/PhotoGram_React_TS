@@ -30,22 +30,24 @@ const UserList: FC = () => {
   }, [])
 
   return (
-    <div className='px-3 py-8 text-white'>
+    <div className='relative flex h-screen w-full max-w-10 flex-col overflow-hidden text-white sm:max-w-sm'>
       <Link to='/profile'>
-        <div className='mb-4 flex cursor-pointer flex-row items-center border-b border-gray-400 pb-4'>
-          <span className='mr-2'>
+        <div className='flex cursor-pointer items-center border-b border-gray-400 sm:p-4'>
+          <span className='inline-flex sm:mr-2'>
             <img
               src={user?.photoURL ? user.photoURL : avatar}
-              className='h-10 w-10 rounded-full border-2 border-slate-800 object-cover'
+              className='mb-2 h-10 w-10 rounded-full border-2 border-slate-800 object-cover sm:mb-0'
             />
           </span>
-          <span className='text-xs'>
+          <span className='hidden text-xs sm:inline-flex'>
             {user?.displayName ? user.displayName : 'Guest_user'}
           </span>
         </div>
       </Link>
-      <h3 className='text-sm text-slate-300'>Suggested Friends</h3>
-      <div className='my-4'>
+      <h3 className='hidden p-2 text-sm text-slate-300 sm:inline-flex'>
+        Suggested Friends
+      </h3>
+      <div className='my-4 sm:mx-4'>
         {suggestedUser.length > 0 ? (
           <UserRenderList data={suggestedUser} />
         ) : (
