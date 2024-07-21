@@ -1,9 +1,11 @@
 import { type FC } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
+//Context
+import { UserAuthProvider } from './context/UserAuthProvider'
+
 //Routes
 import { router } from '@/routes'
-import { UserAuthProvider } from './context/UserAuthProvider'
 
 const App: FC = () => {
   return (

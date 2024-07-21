@@ -1,4 +1,5 @@
 import { OutputFileEntry } from '@uploadcare/blocks'
+import { User } from 'firebase/auth'
 
 interface UserSignIn {
   email: string
@@ -24,7 +25,9 @@ interface Post {
   photos: PhotoMeta[]
   likes: number
   userLikes: string[]
-  userId: string | null
+  userId?: string
+  userName?: string
+  photoURL?: string
   date: Date
 }
 
@@ -34,16 +37,39 @@ interface PhotoMeta {
 }
 
 interface DocumentResponse {
-  id: string
-  caption: string
-  photos: PhotoMeta[]
-  likes: number
+  id?: string
+  caption?: string
+  photos?: PhotoMeta[]
+  likes?: number
   userLikes: string[]
-  userId: string | null
-  date: Date
+  userId?: string
+  userName?: string
+  photoURL?: string
+  date?: Date
 }
 
 interface LikesInfo {
-  likes: number
-  isLike: boolean
+  likes?: number
+  isLike?: boolean
+}
+
+interface ProfileInfo {
+  user?: User
+  displayName?: string
+  photoURL?: string
+}
+
+interface UserProfile {
+  userId?: string
+  displayName?: string
+  photoURL?: string
+  userBio?: string
+}
+
+interface UserProfileResponse {
+  id?: string
+  userId?: string
+  displayName?: string
+  photoURL?: string
+  userBio?: string
 }

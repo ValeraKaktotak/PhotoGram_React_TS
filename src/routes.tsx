@@ -1,14 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+//Components
+import ProtectedRoutes from './components/ProtectedRoutes'
+
 //Pages
 import Error from '@/pages/error'
 import Home from '@/pages/home'
 import Login from '@/pages/login'
 import MyPhotos from '@/pages/myphotos'
+import NotFound from '@/pages/notfound'
 import Post from '@/pages/post'
 import Profile from '@/pages/profile'
+import EditProfile from '@/pages/profile/EditProfile'
 import SignUp from '@/pages/signup'
-import ProtectedRoutes from './components/ProtectedRoutes'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +34,11 @@ export const router = createBrowserRouter([
         errorElement: <Error />
       },
       {
+        path: '/edit-profile',
+        element: <EditProfile />,
+        errorElement: <Error />
+      },
+      {
         path: '/myphotos',
         element: <MyPhotos />,
         errorElement: <Error />
@@ -44,6 +53,11 @@ export const router = createBrowserRouter([
   {
     path: '/signup',
     element: <SignUp />,
+    errorElement: <Error />
+  },
+  {
+    path: '*',
+    element: <NotFound />,
     errorElement: <Error />
   }
 ])
