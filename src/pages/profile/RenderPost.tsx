@@ -9,6 +9,8 @@ interface IRenderPosts {
 }
 
 export const RenderPosts: FC<IRenderPosts> = ({ data }) => {
+  console.log(data)
+
   return data.map((item, index) => {
     return (
       <div key={index} className='relative'>
@@ -20,9 +22,17 @@ export const RenderPosts: FC<IRenderPosts> = ({ data }) => {
             </div>
           </div>
         </div>
-        <img
-          src={`${item.photos[0]?.cdnUrl}/-/progressive/yes/-/scale_crop/300x300/center/`}
-        />
+        <div className='flex flex-col gap-y-2'>
+          {item.photos?.map((photo, index) => (
+            <img
+              key={index}
+              src={
+                photo.cdnUrl +
+                  '/-/progressive/yes/-/scale_crop/300x300/center/' || ''
+              }
+            />
+          ))}
+        </div>
         <p>{item.caption}</p>
       </div>
     )

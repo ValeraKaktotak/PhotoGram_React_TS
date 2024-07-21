@@ -28,7 +28,9 @@ const Post: FC = () => {
     photos: [],
     likes: 0,
     userLikes: [],
-    userId: null,
+    userId: '',
+    userName: '',
+    photoURL: '',
     date: new Date()
   })
 
@@ -46,7 +48,9 @@ const Post: FC = () => {
     if (user != null) {
       const newPost: Post = {
         ...post,
-        userId: user?.uid || null,
+        userId: user?.uid,
+        userName: user.displayName!,
+        photoURL: user.photoURL!,
         photos: photoMeta
       }
       await createPost(newPost)

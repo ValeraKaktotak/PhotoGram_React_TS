@@ -40,9 +40,17 @@ const MyPhotos: FC = () => {
               </div>
             </div>
           </div>
-          <img
-            src={`${item.photos[0]?.cdnUrl}/-/progressive/yes/-/scale_crop/300x300/center/`}
-          />
+          <div className='flex flex-col gap-y-2'>
+            {item.photos?.map((photo, index) => (
+              <img
+                key={index}
+                src={
+                  photo.cdnUrl +
+                    '/-/progressive/yes/-/scale_crop/300x300/center/' || ''
+                }
+              />
+            ))}
+          </div>
           <p>{item.caption}</p>
         </div>
       )

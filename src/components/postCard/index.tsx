@@ -30,6 +30,8 @@ interface IPostcard {
 }
 
 const Postcard: FC<IPostcard> = ({ data }) => {
+  console.log(data)
+
   const { user } = useContext(userAuthContext)
   const [likesInfo, setLikesInfo] = useState<LikesInfo>({
     likes: data.likes,
@@ -38,7 +40,7 @@ const Postcard: FC<IPostcard> = ({ data }) => {
 
   const updateLike = async (isVal: boolean) => {
     setLikesInfo({
-      likes: isVal ? likesInfo.likes + 1 : likesInfo.likes - 1,
+      likes: isVal ? likesInfo.likes! + 1 : likesInfo.likes! - 1,
       isLike: !likesInfo.isLike
     })
     if (isVal) {
@@ -50,7 +52,7 @@ const Postcard: FC<IPostcard> = ({ data }) => {
     await updateLikesOnPost(
       data.id!,
       data.userLikes!,
-      isVal ? likesInfo.likes + 1 : likesInfo.likes - 1
+      isVal ? likesInfo.likes! + 1 : likesInfo.likes! - 1
     )
   }
 
@@ -67,8 +69,10 @@ const Postcard: FC<IPostcard> = ({ data }) => {
           <span>Guest_user</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className='p-0'>
-        <img src={data.photos ? data.photos[0]?.cdnUrl ?? '' : ''} />
+      <CardContent className='flex flex-col gap-y-2 p-0'>
+        {data.photos?.map((photo, index) => (
+          <img key={index} src={photo.cdnUrl || ''} />
+        ))}
       </CardContent>
       <CardFooter className='flex flex-col p-3'>
         <div className='mb-3 flex w-full justify-between'>
