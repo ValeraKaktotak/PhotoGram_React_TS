@@ -65,8 +65,8 @@ const Profile: FC = () => {
             Profile
           </h3>
 
-          <div className='border-b p-8 pb-4'>
-            <div className='mb-2 flex flex-row items-center pb-2'>
+          <div className='border-b px-2 py-8 pb-4 lg:p-8'>
+            <div className='mb-2 flex flex-col items-center pb-2 lg:flex-row'>
               <div className='mr-2'>
                 <img
                   src={userInfo.photoURL ? userInfo.photoURL : avatar}
@@ -75,14 +75,12 @@ const Profile: FC = () => {
                 />
               </div>
 
-              <div>
-                <div className='ml-3 text-xl'>
+              <div className='text-base lg:text-xl'>
+                <div className='ml-3'>
                   {userInfo.displayName ? userInfo.displayName : 'Guest_user'}
                 </div>
 
-                <div className='ml-3 text-xl'>
-                  {user?.email ? user.email : ''}
-                </div>
+                <div className='ml-3'>{user?.email ? user.email : ''}</div>
               </div>
             </div>
 
@@ -99,7 +97,7 @@ const Profile: FC = () => {
             </div>
           </div>
 
-          <div className='p-8'>
+          <div className='px-2 py-8 pb-4 lg:p-8'>
             <h2 className='mb-5'>My Posts</h2>
             <div className='grid grid-cols-2 gap-2 md:grid-cols-3'>
               {userData ? (

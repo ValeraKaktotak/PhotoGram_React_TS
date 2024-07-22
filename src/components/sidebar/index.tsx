@@ -23,11 +23,11 @@ const Sidebar: FC<ISidebar> = ({ items }) => {
 
   return (
     <nav className='relative flex h-screen w-full max-w-10 flex-col overflow-hidden sm:max-w-sm'>
-      <div className='m-5 flex justify-center'>
+      <Link to='/' className='flex justify-center p-5'>
         <div className='hidden text-lg text-white sm:inline-flex'>
           PhotoGram
         </div>
-      </div>
+      </Link>
       {items.map((item, i) => (
         <div
           key={i}
